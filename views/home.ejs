@@ -1,0 +1,41 @@
+<%- include("partials/header"); -%>
+
+<div class="top">
+    <h1>Meme Stream</h1>
+    <button type="button" class="button post-meme" name="button">Post Meme</button>
+</div>
+<div class="form-container">
+  <form class="submit-meme" action="/" method="post">
+    <div class="form-row">
+      <label>Meme Owner</label><br>
+      <input
+      type="text" name="name" placeholder="Your name." required>
+    </div>
+    <div class="form-row">
+      <label>Caption</label><br>
+      <input  type="text" name="caption"  placeholder="Be creative with the caption." required>
+    </div>
+    <div class="form-row">
+      <label>Meme URL</label><br>
+      <input  type="url" name="url"  placeholder="Enter URL of your meme here." required/>
+      <button class="button" type="submit" name="button">Submit Meme</button>
+    </div>
+
+</form>
+</div>
+    <div class="container">
+
+    <% for(var i = posts.length-1, j = 0; i >= 0 && j < 100 ; i--, j++) { %>
+        <section class="memePost" id=<%= posts[i]._id %>>
+            <h2><%=posts[i].name%></h2>
+            <p><%=posts[i].caption%></p>
+            <img src=<%=posts[i].url%> alt="meme">
+            <form class="" action="<%= "/memes/" + posts[i]._id + "/edit" %>" method="GET">
+                <button class="button edit" type="submit" name="edit">Edit</button>
+            </form>
+        </section>
+
+    <% } %>
+    </div>
+
+<%- include("partials/footer"); -%>
